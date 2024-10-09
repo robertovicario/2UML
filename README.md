@@ -13,22 +13,22 @@
 <table>
     <tr>
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/1.png" width="512"></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/2.png" width="512"></td>
     </tr>
     <tr>
-        <td align="center">2UML</td>
+        <td align="center">Light</td>
+        <td align="center">Dark</td>
     </tr>
 </table>
 
 ## Control Flow
 
-Figure 1 shows a UML sequence diagram to explain how the system works.
-
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/2.png" width="512"></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/3.png" width="512"></td>
     </tr>
     <tr>
-        <td align="center">Figure 1: Exploring the control flow of the system</td>
+        <td align="center">Exploring the control flow of the system</td>
     </tr>
 </table>
 
