@@ -32,4 +32,4 @@ services:
       - ./app/templates.json:/data/templates.json:ro
 
 volumes:
-  mongodb_data:
+  2uml_mongodb:
