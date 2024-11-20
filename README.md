@@ -28,7 +28,7 @@
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/3.png" width="512"></td>
     </tr>
     <tr>
-        <td align="center">Image: Exploring the control flow of the system.</td>
+        <td align="center"><strong>Image:</strong> Exploring the control flow of the system.</td>
     </tr>
 </table>
 
