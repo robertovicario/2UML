@@ -13,3 +13,23 @@ services:
     volumes:
       - ./app:/app
     restart: unless-stopped
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    command: >
+      sh -c '
+        mongod --fork --logpath /var/log/mongodb.log --bind_ip_all &&
+        mongoimport --host localhost --db templates_db --collection templates --file /data/templates.json --jsonArray &&
+        tail -f /dev/null
+      '
+    volumes:
+      - mongodb_data:/data/db
+      - ./app/templates.json:/data/templates.json:ro
+
+volumes:
+  mongodb_data:
