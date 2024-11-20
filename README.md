@@ -12,8 +12,8 @@
 
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/1.png" width="512"></td>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/2.png" width="512"></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/1.png" width="512"></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/2.png" width="512"></td>
     </tr>
     <tr>
         <td align="center"><strong>Light</strong></td>
@@ -25,12 +25,16 @@
 
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/3.png" width="512"></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/3.png" width="512"></td>
     </tr>
     <tr>
-        <td align="center">Image: Exploring the control flow of the system</td>
+        <td align="center">Image: Exploring the control flow of the system.</td>
     </tr>
 </table>
+
+## Instructions
+
+We are currently working on integrating Docker into this repository! In the meantime, feel free to explore the [Hugging Face space](https://huggingface.co/spaces/robertovicario/2UML).
 
 ## License
 
