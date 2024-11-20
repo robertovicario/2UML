@@ -1,0 +1,346 @@
+{
+    "Default": [
+        {
+            "name": "Client-Server Model",
+            "description": "Client-Server Model",
+            "uml": "Sequence",
+            "code": "@startuml\n\tClient -> Server: Request\n\tServer --> Client: Response\n@enduml"
+        }
+    ],
+    "Architecture and Urban Studies": [
+        {
+            "name": "Urban Planning",
+            "description": "Illustrates a comprehensive workflow for the urban planning process, emphasizing an iterative model that includes community engagement, zoning law navigation, and feedback loops for continual refinement. The process integrates advanced data analytics for needs assessment and utilizes GIS technology for spatial analysis, culminating in a well-rounded plan that addresses diverse stakeholder needs.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Identify community needs through surveys;\n\t:Analyze data using GIS tools;\n\t:Draft initial urban design proposal;\n\trepeat\n\t  :Conduct public workshops;\n\t  :Gather stakeholder feedback;\n\trepeat while (Feedback received)\n\t:Revise design based on consultations;\n\t:Finalize zoning application;\n\t:Submit plan for regulatory approval;\n\tstop\n@enduml"
+        },
+        {
+            "name": "Building Design",
+            "description": "Defines an advanced model for a building, incorporating architectural styles, structural components, and environmental performance metrics. It also establishes relationships with various environmental factors, such as climate responsiveness, energy consumption, and the impact on local ecosystems. This model allows for simulation of design changes and their potential effects.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass Building {\n\t  +String name\n\t  +int numberOfFloors\n\t  +double totalArea\n\t  +double energyEfficiencyRating\n\t  +List<Room> rooms\n\t}\n\t\n\tclass Room {\n\t  +String roomType\n\t  +double area\n\t}\n\t\n\tclass Environment {\n\t  +String climateType\n\t  +double averageTemperature\n\t  +double airQualityIndex\n\t}\n\t\n\tBuilding --> Room : contains\n\tBuilding --> Environment : interacts with\n@enduml"
+        },
+        {
+            "name": "Sustainability Assessment",
+            "description": "Outlines an intricate framework for conducting sustainability assessments, focusing on evaluating the interrelations among energy efficiency measures, water conservation techniques, and waste reduction strategies. This model includes mechanisms for continual performance tracking and feedback, fostering an adaptive management approach to sustainability in urban design.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Sustainability Assessment\" {\n\t  [Energy Efficiency Initiatives]\n\t  [Water Conservation Systems]\n\t  [Waste Reduction Programs]\n\t  [Sustainability Monitoring]\n\t}\n\t[Energy Efficiency Initiatives] --> [Water Conservation Systems] : influences\n\t[Water Conservation Systems] --> [Waste Reduction Programs] : complements\n\t[Sustainability Monitoring] --> [Energy Efficiency Initiatives] : tracks performance\n\t[Sustainability Monitoring] --> [Waste Reduction Programs] : evaluates impact\n@enduml"
+        },
+        {
+            "name": "Smart Building Deployment",
+            "description": "Illustrates the deployment of a smart building system, showcasing the hardware and software components, including sensors, control units, and user interfaces. This model highlights the physical relationships between various components, ensuring effective communication and data flow.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode Building {\n\t  [Smart Sensor] << (S, lightblue) >>\n\t  [Control Unit] << (C, lightgreen) >>\n\t  [User Interface] << (U, lightyellow) >>\n\t}\n\tnode Cloud {\n\t  [Data Analytics Service] << (A, lightpink) >>\n\t}\n\tBuilding --> Cloud : sends data\n\tCloud --> Building : receives commands\n@enduml"
+        },
+        {
+            "name": "Urban Design Objects",
+            "description": "Represents the relationships between various objects involved in urban design, such as buildings, parks, and roads. This diagram provides a snapshot of the state of these objects at a particular point in time, showcasing their attributes and connections.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject Building {\n\t  name = \"Library\"\n\t  numberOfFloors = 2\n\t  totalArea = 2500.5\n\t}\n\tobject Park {\n\t  name = \"Central Park\"\n\t  area = 15000.0\n\t}\n\tobject Road {\n\t  name = \"Main St\"\n\t  length = 500.0\n\t}\n\tBuilding -- Road : located on\n\tRoad -- Park : borders\n@enduml"
+        },
+        {
+            "name": "Construction Project",
+            "description": "Depicts a dynamic sequence of interactions in a construction project, highlighting key communication pathways among clients, architects, engineers, and contractors. This model includes handling unexpected risks, change orders, and resource allocation, providing a robust overview of the project lifecycle from conception to completion.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant Client\n\tparticipant Architect\n\tparticipant Engineer\n\tparticipant Contractor\n\tClient -> Architect: Request initial design proposal\n\tArchitect -> Engineer: Collaborate on structural design\n\tEngineer -> Contractor: Provide specifications\n\tContractor -> Client: Present comprehensive project timeline\n\topt Change Request\n\t  Client -> Architect: Request modifications\n\t  Architect -> Engineer: Update designs\n\t  Engineer -> Contractor: Adjust specifications\n\tend\n\tContractor -> Client: Revise project estimate\n@enduml"
+        },
+        {
+            "name": "Building Lifecycle States",
+            "description": "Describes the various states in the lifecycle of a building, including design, construction, occupancy, and renovation. This model captures the transitions between states based on specific events, providing insights into the management of building projects.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Design\n\tDesign --> Construction : approved\n\tConstruction --> Occupancy : completed\n\tOccupancy --> Renovation : needs improvement\n\tRenovation --> Occupancy : completed\n@enduml"
+        },
+        {
+            "name": "Construction Timeline",
+            "description": "Models the timing of key events in a construction project, including start and end times for various phases such as planning, design, and construction. This diagram helps visualize the project's progress over time.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming start\n\t  phase Planning {\n\t    duration = 30 days\n\t  }\n\t  phase Design {\n\t    duration = 60 days\n\t  }\n\t  phase Construction {\n\t    duration = 120 days\n\t  }\n\tend timing\n@enduml"
+        },
+        {
+            "name": "Site Analysis",
+            "description": "Models the complex interactions involved in performing a detailed site analysis, integrating methodologies for data collection, environmental assessments, stakeholder collaboration, and regulatory compliance. This analysis informs strategic planning decisions by synthesizing qualitative and quantitative data to understand site potential and constraints.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:Project Manager:\n\t(Conduct Comprehensive Site Analysis)\n\t(Collect Environmental and Geospatial Data)\n\t(Engage Stakeholders via workshops)\n\t(Prepare Detailed Analysis Report)\n\t:Review findings with regulatory bodies;\n@enduml"
+        }
+    ],
+    "Chemical and Material Sciences": [
+        {
+            "name": "Synthesis Process",
+            "description": "Describes the critical steps involved in material synthesis, from the selection of precursors to the cooling and final characterization of the product. This model encapsulates the operational workflow, emphasizing the importance of process conditions in achieving desired material properties.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Select Precursors;\n\t:Mix Precursors;\n\t:Apply Heat;\n\t:Cool Down;\n\t:Characterize Material;\n\tstop\n@enduml"
+        },
+        {
+            "name": "Chemical Reaction",
+            "description": "Elucidates the fundamental components of a chemical reaction, detailing the roles of reactants, products, and energy changes involved. This model incorporates factors such as reaction kinetics, equilibrium states, and thermodynamic properties, offering a comprehensive view of the transformation processes.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass ChemicalReaction {\n\t  +String reactant\n\t  +String product\n\t  +double energyChange\n\t  +double reactionRate\n\t  +String equilibriumState\n\t}\n@enduml"
+        },
+        {
+            "name": "Laboratory Experiment",
+            "description": "Organizes the essential components for laboratory setups, encompassing reagents, apparatus, and safety equipment. This diagram presents a structured overview of the laboratory environment, facilitating effective experiment design and safety compliance.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Laboratory\" {\n\t  [Reagents]\n\t  [Apparatus]\n\t  [Safety Equipment]\n\t  [Monitoring Devices]\n\t}\n@enduml"
+        },
+        {
+            "name": "Laboratory Setup Deployment",
+            "description": "Depicts the deployment framework of a laboratory experiment setup, integrating critical components such as apparatus, safety equipment, and real-time monitoring systems. This model highlights the spatial organization and interaction dynamics among hardware elements, ensuring efficient operational workflows and safety compliance.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode Laboratory {\n\t  [Apparatus] << (A, lightblue) >>\n\t  [Safety Equipment] << (S, lightgreen) >>\n\t  [Monitoring System] << (M, lightyellow) >>\n\t}\n\tnode ControlRoom {\n\t  [Control Interface] << (CI, lightpink) >>\n\t}\n\tLaboratory --> ControlRoom : transmits data\n\tControlRoom --> Laboratory : issues commands\n@enduml"
+        },
+        {
+            "name": "Chemical Experiment Objects",
+            "description": "Illustrates the relationships among key objects in a chemical experiment, including reactants, products, catalysts, and intermediates. This diagram captures the attributes and interactions of components throughout the reaction process, providing insights into transformation dynamics and catalytic effects.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject Reactant {\n\t  name = \"H2O\"\n\t  concentration = \"1 M\"\n\t}\n\tobject Product {\n\t  name = \"H2 + O2\"\n\t  yield = \"100%\"\n\t}\n\tobject Catalyst {\n\t  name = \"Enzyme\"\n\t  activityLevel = \"high\"\n\t}\n\tReactant -- Product : transforms\n\tCatalyst -- Reactant : accelerates\n@enduml"
+        },
+        {
+            "name": "Phase Change Interaction",
+            "description": "Illustrates the interactions during a phase change process between a substance and an external heat source. This model details the energy transfer mechanisms that influence phase transitions, providing insights into thermal dynamics and material behavior.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant Substance\n\tparticipant HeatSource\n\tSubstance -> HeatSource: Absorb Heat\n\tHeatSource -> Substance: Increase Temperature\n\tSubstance -> HeatSource: Release Heat\n@enduml"
+        },
+        {
+            "name": "Material Phase States",
+            "description": "Describes the various states of a material during phase transitions, encompassing solid, liquid, and gas phases. This model illustrates the energy exchange dynamics, detailing how materials absorb or release energy during transitions and the impact on molecular structure.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Solid\n\tSolid --> Liquid : absorbs heat\n\tLiquid --> Gas : absorbs more heat\n\tGas --> Liquid : releases heat\n\tLiquid --> Solid : releases heat\n@enduml"
+        },
+        {
+            "name": "Chemical Reaction Timing",
+            "description": "Models the temporal dynamics of key events in a chemical reaction, including reactant breakdown, energy release, and product formation. This diagram provides a visual representation of reaction progression, helping to analyze kinetics and reaction rates over time.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming start\n\t  phase ReactantBreakdown {\n\t    duration = 2 s\n\t  }\n\t  phase EnergyRelease {\n\t    duration = 3 s\n\t  }\n\t  phase ProductFormation {\n\t    duration = 5 s\n\t  }\n\tend timing\n@enduml"
+        },
+        {
+            "name": "Material Properties",
+            "description": "Outlines the critical tasks involved in analyzing material properties, such as material identification, strength evaluation, and compositional analysis. This model serves as a framework for systematic material characterization, facilitating comparisons across different materials.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:Researcher:\n\t(Identify Material)\n\t(Evaluate Mechanical Strength)\n\t(Analyze Chemical Composition)\n\t(Assess Thermal Properties)\n@enduml"
+        }
+    ],
+    "Design": [
+        {
+            "name": "User Interface Design Process",
+            "description": "Outlines the process of designing a user interface, encompassing steps from requirement gathering to user testing. This diagram illustrates the iterative nature of UI design, highlighting the importance of user feedback and adjustments in creating effective interfaces.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Gather Requirements;\n\t:Sketch Wireframes;\n\t:Develop Prototypes;\n\t:Conduct User Testing;\n\t:Iterate Based on Feedback;\n\tstop\n@enduml"
+        },
+        {
+            "name": "Product Design",
+            "description": "Defines the essential attributes of a product, including its name, price, material, and dimensions. This model provides a comprehensive framework for understanding product specifications, market positioning, and user requirements.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass Product {\n\t  +String name\n\t  +double price\n\t  +String material\n\t  +double weight\n\t  +String dimensions\n\t}\n@enduml"
+        },
+        {
+            "name": "Design Review Process",
+            "description": "Breaks down the design review process, focusing on document preparation, feedback collection, and decision-making. This model illustrates the collaborative nature of design reviews and the importance of clear communication among stakeholders.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Design Review\" {\n\t  [Design Document]\n\t  [Feedback Form]\n\t  [Review Meeting]\n\t  [Action Items]\n\t}\n@enduml"
+        },
+        {
+            "name": "Product Design Software Deployment",
+            "description": "Illustrates the deployment architecture of a product design software, detailing interactions between the design tool, cloud storage, and user interface. This diagram models the arrangement of software components, data flow, and user access points, ensuring efficient collaboration and data management.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode DesignSoftware {\n\t  [Design Tool] << (D, lightblue) >>\n\t  [Cloud Storage] << (C, lightgreen) >>\n\t  [UI Component] << (U, lightyellow) >>\n\t}\n\tnode UserDevice {\n\t  [User Interface] << (UI, lightpink) >>\n\t}\n\tDesignSoftware --> UserDevice : provides access\n\tUserDevice --> DesignSoftware : saves designs\n@enduml"
+        },
+        {
+            "name": "UI Components",
+            "description": "Represents the relationships between various components of a user interface, such as buttons, forms, and text fields. This diagram captures the states and properties of UI elements during the design process, facilitating effective user experience design.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject Button {\n\t  label = \"Submit\"\n\t  isEnabled = true\n\t}\n\tobject Form {\n\t  fieldCount = 3\n\t  isValid = false\n\t}\n\tobject TextField {\n\t  placeholder = \"Enter text\"\n\t  isFocused = false\n\t}\n\tForm -- Button : contains\n\tForm -- TextField : contains\n@enduml"
+        },
+        {
+            "name": "Fashion Collection Process",
+            "description": "Displays the process flow in fashion design, detailing steps from requesting fabric samples to finalizing the collection. This diagram emphasizes the collaborative nature of fashion design and the importance of material selection.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant Designer\n\tparticipant FabricSupplier\n\tDesigner -> FabricSupplier: Request Fabric Samples\n\tFabricSupplier -> Designer: Provide Fabric Samples\n\tDesigner -> Designer: Evaluate Samples\n@enduml"
+        },
+        {
+            "name": "Design Workflow States",
+            "description": "Describes the various stages in a design project, including brainstorming, prototyping, feedback incorporation, and finalization. This diagram illustrates the transitions between these stages, emphasizing iterative processes and collaborative feedback loops.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Brainstorming\n\tBrainstorming --> Prototyping : ideas approved\n\tPrototyping --> Feedback : prototype created\n\tFeedback --> Finalizing : changes implemented\n\tFinalizing --> [*] : design approved\n@enduml"
+        },
+        {
+            "name": "User Testing Timeline",
+            "description": "Models the timing of key events in user interface testing, capturing the phases from feedback collection to revisions. This diagram visualizes the duration of each phase, aiding in project planning and resource allocation for user testing activities.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming start\n\t  phase FeedbackCollection {\n\t    duration = 10 days\n\t  }\n\t  phase PrototypeRevisions {\n\t    duration = 7 days\n\t  }\n\t  phase FinalTesting {\n\t    duration = 5 days\n\t  }\n\tend timing\n@enduml"
+        },
+        {
+            "name": "Brand Identity Development",
+            "description": "Models the critical steps in developing brand identity, including logo creation, color palette selection, and typography definition. This diagram emphasizes the strategic alignment of brand elements with target audience perceptions and marketing goals.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:Designer:\n\t(Create Logo)\n\t(Select Color Palette)\n\t(Define Typography)\n\t(Develop Brand Guidelines)\n@enduml"
+        }
+    ],
+    "Engineering and Technology": [
+        {
+            "name": "Control System",
+            "description": "Elaborates on the intricate workflow of a control system, detailing the sequence of signal input, processing, and output response. It highlights feedback mechanisms, allowing for adaptive adjustments based on system performance metrics, ensuring optimal functionality in dynamic environments.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Receive Input Signal;\n\t:Analyze Signal for Patterns;\n\t:Process Signal with Algorithms;\n\t:Generate Output Response;\n\trepeat\n\t  :Monitor System Performance;\n\t  :Adjust Processing Parameters;\n\trepeat while (Optimization Required)\n\tstop\n@enduml"
+        },
+        {
+            "name": "Mechanical System",
+            "description": "Defines a comprehensive model of a mechanical system, encompassing various component types and performance metrics. It integrates operational parameters such as load capacity, efficiency ratings, and inter-component relationships, facilitating advanced simulations of mechanical behaviors under varying conditions.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass MechanicalSystem {\n\t  +String componentType\n\t  +double efficiencyRating\n\t  +double loadCapacity\n\t  +List<Subsystem> subsystems\n\t}\n\t\n\tclass Subsystem {\n\t  +String name\n\t  +double performanceMetric\n\t}\n\t\n\tMechanicalSystem --> Subsystem : contains\n@enduml"
+        },
+        {
+            "name": "Network Topology",
+            "description": "Illustrates a detailed representation of network architecture, showcasing the interconnections between routers, switches, firewalls, and other critical components. This model emphasizes data flow paths, redundancy features, and security measures, providing insights into network resilience and performance optimization.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Network Topology\" {\n\t  [Router] << (R, lightblue) >>\n\t  [Switch] << (S, lightgreen) >>\n\t  [Firewall] << (F, lightcoral) >>\n\t}\n\tRouter --> Switch : forwards data\n\tSwitch --> Firewall : filters traffic\n@enduml"
+        },
+        {
+            "name": "Mechanical System Deployment",
+            "description": "Depicts the deployment architecture of a mechanical system, emphasizing the arrangement and interactivity of its components, including actuators, sensors, and control units. This model demonstrates the operational dynamics and communication pathways that enable system functionality and user interaction.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode MechanicalSystem {\n\t  [Actuator] << (A, lightblue) >>\n\t  [Sensor] << (S, lightgreen) >>\n\t  [Control Unit] << (C, lightyellow) >>\n\t}\n\tnode UserInterface {\n\t  [User Interface] << (UI, lightpink) >>\n\t}\n\tMechanicalSystem --> UserInterface : transmits data\n\tUserInterface --> MechanicalSystem : issues commands\n@enduml"
+        },
+        {
+            "name": "Electrical Circuit Objects",
+            "description": "Captures the detailed state of an electrical circuit, featuring key components such as power sources, resistors, and loads. This model delineates the attributes and interactions between these objects, providing a holistic view of the circuit's operational characteristics and performance under various conditions.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject PowerSource {\n\t  voltage = 12V\n\t  current = 2A\n\t}\n\tobject Resistor {\n\t  resistance = 10Ω\n\t  powerRating = 5W\n\t}\n\tobject Load {\n\t  current = 1.2A\n\t  type = \"LED\"\n\t}\n\tPowerSource -- Resistor : powers\n\tResistor -- Load : feeds\n@enduml"
+        },
+        {
+            "name": "Electrical Circuit",
+            "description": "Demonstrates the sequential voltage transfer process among a power source, resistor, and load. This model illustrates the timing and effectiveness of energy delivery, addressing potential losses and efficiency in current flow.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant PowerSource\n\tparticipant Resistor\n\tparticipant Load\n\tPowerSource -> Resistor: Apply Voltage\n\tResistor -> Load: Deliver Current\n\tLoad -> Resistor: Feedback Current\n@enduml"
+        },
+        {
+            "name": "Control System States",
+            "description": "Illustrates the various operational states of a control system, including idle, processing, and responding phases. This model maps out state transitions triggered by input signals and processing outcomes, offering insights into system responsiveness and performance metrics.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Idle\n\tIdle --> Processing : signal received\n\tProcessing --> Responding : processing complete\n\tResponding --> Idle : response confirmed\n@enduml"
+        },
+        {
+            "name": "Data Processing Timeline",
+            "description": "Models the temporal dynamics of key events within a data processing system, detailing the timeframes for receiving, processing, and storing data. This diagram facilitates an understanding of operational efficiency and bottlenecks within the workflow.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming start\n\t  phase ReceiveData {\n\t    duration = 5 ms\n\t  }\n\t  phase ProcessData {\n\t    duration = 20 ms\n\t  }\n\t  phase StoreData {\n\t    duration = 10 ms\n\t  }\n\tend timing\n@enduml"
+        },
+        {
+            "name": "Use-case",
+            "description": "Visualizes the intricate flow of data within a software system, detailing the processes of receiving, processing, and storing information. This model encompasses user interactions and system responses, ensuring a comprehensive overview of system functionality and user experience.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:User:\n\t(Receive Data) --> (Process Data)\n\t(Process Data) --> (Store Data)\n\t:Review Processed Data;\n@enduml"
+        }
+    ],
+    "Management and Environmental Sciences": [
+        {
+            "name": "Stakeholder Analysis",
+            "description": "Maps out the comprehensive process of identifying, analyzing, and prioritizing stakeholders in a project. This model highlights the importance of understanding stakeholder interests and influences.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Identify Stakeholders;\n\t:Analyze Interests;\n\t:Prioritize Stakeholders;\n\t:Engage Key Stakeholders;\n\tstop\n@enduml"
+        },
+        {
+            "name": "Project Management",
+            "description": "Defines the key attributes of a project, including its name, start and end dates, and associated resources. This model serves as a foundational element for effective project planning and execution.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass Project {\n\t  +String name\n\t  +Date startDate\n\t  +Date endDate\n\t  +List<String> resources\n\t}\n@enduml"
+        },
+        {
+            "name": "Risk Management",
+            "description": "Breaks down the essential components of risk management, including risk identification, assessment, mitigation strategies, and contingency planning. This diagram serves as a guide for proactive risk handling.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Risk Management\" {\n\t  [Risk Identification]\n\t  [Risk Assessment]\n\t  [Mitigation Strategies]\n\t  [Contingency Plans]\n\t}\n@enduml"
+        },
+        {
+            "name": "Project Management Software Deployment",
+            "description": "Represents the deployment architecture of a project management software system, illustrating the interaction between the server, database, and user interface. This model highlights the flow of data and user interactions.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode Server {\n\t  [Project Management API]\n\t}\n\tnode Database {\n\t  [Project Data Storage]\n\t}\n\tnode Client {\n\t  [User Interface]\n\t}\n\tClient --> Server : sends requests\n\tServer --> Database : stores/retrieves data\n\tServer --> Client : returns response\n@enduml"
+        },
+        {
+            "name": "Stakeholder Relationships",
+            "description": "Visualizes the relationships between different stakeholders in an environmental project, highlighting their roles, interactions, and dependencies. This diagram aids in understanding stakeholder dynamics.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject Government {\n\t  role = \"Regulator\"\n\t}\n\tobject LocalCommunity {\n\t  role = \"Affected Party\"\n\t}\n\tobject ProjectManager {\n\t  role = \"Coordinator\"\n\t}\n\tGovernment -- ProjectManager : regulates\n\tLocalCommunity -- ProjectManager : interacts\n\tProjectManager -- Government : reports\n@enduml"
+        },
+        {
+            "name": "Team Communication",
+            "description": "Shows the communication flow between different members of a project team, illustrating task assignments, code submissions, and feedback loops. This diagram emphasizes collaboration and accountability within the team.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant Manager\n\tparticipant Developer\n\tparticipant Tester\n\tManager -> Developer: Assign Task\n\tDeveloper -> Tester: Submit Code\n\tTester -> Manager: Report Bugs\n\tManager -> Developer: Provide Feedback\n@enduml"
+        },
+        {
+            "name": "Environmental Impact Assessment Process",
+            "description": "Illustrates the various stages of an environmental impact assessment, from initial review to final approval. This diagram highlights the procedural flow and the integration of feedback at each stage.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Scoping\n\tScoping --> ImpactAssessment : scope defined\n\tImpactAssessment --> Review : assessment completed\n\tReview --> PublicConsultation : feedback collected\n\tPublicConsultation --> FinalApproval : changes integrated\n\tFinalApproval --> [*]\n@enduml"
+        },
+        {
+            "name": "Project Timeline",
+            "description": "Shows the timing and duration of key phases in a project, including planning, execution, and closure. This diagram provides insights into project management and scheduling efficiency.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming project {\n\t  phase Planning {\n\t    duration = 10 days\n\t  }\n\t  phase Execution {\n\t    duration = 20 days\n\t  }\n\t  phase Closure {\n\t    duration = 5 days\n\t  }\n\t}\n@enduml"
+        },
+        {
+            "name": "Environmental Impact Assessment",
+            "description": "Describes the systematic process of conducting an environmental impact assessment, covering stages from scoping to public consultation. This model emphasizes the thorough evaluation of environmental implications.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:Consultant:\n\t(Scoping)\n\t(Impact Analysis)\n\t(Public Consultation)\n\t(Report Preparation)\n@enduml"
+        }
+    ],
+    "Mathematics and Physical Sciences": [
+        {
+            "name": "Physics Experiment",
+            "description": "Outlines the comprehensive steps for conducting a physics experiment, from defining the hypothesis and designing the experiment to analyzing results and drawing conclusions. This model emphasizes the systematic approach to scientific inquiry.",
+            "uml": "Activity",
+            "code": "@startuml\n\tstart\n\t:Define Hypothesis;\n\t:Design Experiment;\n\t:Conduct Experiment;\n\t:Analyze Results;\n\t:Draw Conclusions;\n\tstop\n@enduml"
+        },
+        {
+            "name": "Mathematical Model",
+            "description": "Captures the key attributes of a mathematical model, detailing its name, underlying equations, and parameters. This model serves as a foundation for understanding complex systems and their behaviors.",
+            "uml": "Class",
+            "code": "@startuml\n\tclass MathematicalModel {\n\t  +String name\n\t  +String equation\n\t  +List<String> parameters\n\t}\n@enduml"
+        },
+        {
+            "name": "Numerical Simulation",
+            "description": "Depicts the tools involved in numerical simulations, including solvers, mesh generators, and post-processors. This diagram showcases the integration of various components necessary for accurate simulations.",
+            "uml": "Component",
+            "code": "@startuml\n\tpackage \"Numerical Simulation\" {\n\t  [Solver]\n\t  [Mesh Generator]\n\t  [Post-Processor]\n\t  [Visualization Tool]\n\t}\n@enduml"
+        },
+        {
+            "name": "Physics Simulation Deployment",
+            "description": "Represents the deployment of a physics simulation system, illustrating how the solver, visualization tool, and cloud computing service are interconnected. This model highlights the architecture for scalable simulations and data processing.",
+            "uml": "Deployment",
+            "code": "@startuml\n\tnode PhysicsSimulation {\n\t  [Solver] << (S, lightblue) >>\n\t  [Visualization Tool] << (V, lightgreen) >>\n\t}\n\tnode CloudService {\n\t  [Compute Resource] << (C, lightyellow) >>\n\t}\n\tPhysicsSimulation --> CloudService : offloads computation\n\tCloudService --> PhysicsSimulation : returns processed results\n@enduml"
+        },
+        {
+            "name": "Mathematical Objects",
+            "description": "Depicts the relationships between various mathematical objects, such as matrices and vectors, within a linear algebra framework. This diagram emphasizes the operations and transformations between these objects.",
+            "uml": "Object",
+            "code": "@startuml\n\tobject Matrix {\n\t  rows = 3\n\t  columns = 3\n\t}\n\tobject Vector {\n\t  dimension = 3\n\t}\n\tMatrix -- Vector : transforms\n@enduml"
+        },
+        {
+            "name": "Statistical Analysis",
+            "description": "Illustrates the data exchange between a data collector and an analyst during statistical analysis. This diagram emphasizes the iterative nature of data refinement and the collaboration required for effective analysis.",
+            "uml": "Sequence",
+            "code": "@startuml\n\tparticipant DataCollector\n\tparticipant Analyst\n\tDataCollector -> Analyst: Provide Initial Data\n\tAnalyst -> DataCollector: Request More Data\n\tAnalyst -> DataCollector: Share Analysis Results\n@enduml"
+        },
+        {
+            "name": "Simulation States",
+            "description": "Shows the different states of a numerical simulation, from initialization through to result interpretation. This diagram illustrates how the simulation progresses through key stages, facilitating better understanding and management of the simulation lifecycle.",
+            "uml": "State",
+            "code": "@startuml\n\t[*] --> Initialization\n\tInitialization --> Running : inputs provided\n\tRunning --> PostProcessing : simulation complete\n\tPostProcessing --> Completed : results generated\n\tCompleted --> [*]\n@enduml"
+        },
+        {
+            "name": "Data Analysis Timing",
+            "description": "Visualizes the timing of events in a statistical analysis process, detailing how long data collection, processing, and interpretation phases take. This diagram aids in project management by providing insights into time allocation for each phase.",
+            "uml": "Timing",
+            "code": "@startuml\n\ttiming analysis {\n\t  phase DataCollection {\n\t    duration = 5 days\n\t  }\n\t  phase DataProcessing {\n\t    duration = 3 days\n\t  }\n\t  phase Interpretation {\n\t    duration = 2 days\n\t  }\n\t}\n@enduml"
+        },
+        {
+            "name": "Quantum Mechanics",
+            "description": "Shows interactions for studying quantum mechanics, including particle observation, wave function analysis, and experimental setups. This diagram highlights the complexities and nuances of quantum studies.",
+            "uml": "Use-case",
+            "code": "@startuml\n\t:Physicist:\n\t(Study Particles)\n\t(Analyze Wave Functions)\n\t(Conduct Experiments)\n\t(Explore Quantum States)\n@enduml"
+        }
+    ]
+}

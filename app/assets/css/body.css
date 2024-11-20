@@ -1,0 +1,14 @@
+body {
+  font-family: 'Inter';
+}
+
+@media (min-width: 768px) {
+  #section {
+    padding-right: 0!important;
+  }
+}
+
+#content {
+  width: 80%!important;
+}
+

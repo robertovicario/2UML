@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>2UML</title>
+    <meta name="theme-color" content="#8a2be2">
+    <link rel="canonical" href="https://www.robertovicario.com/2UML/">
+    <meta property="og:url" content="https://www.robertovicario.com/2UML/">
+    <meta name="description" content="A user-friendly tool that generates UMLs starting from natural language inputs. ">
+    <meta name="twitter:title" content="2UML">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="A user-friendly tool that generates UMLs starting from natural language inputs. ">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "2UML",
+            "url": "https://www.robertovicario.com/2UML"
+        }
+    </script>
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicons/android-chrome-512x512.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+    <link rel="stylesheet" href="assets/css/Inter.css">
+    <link rel="stylesheet" href="assets/css/Syncopate.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/body.css">
+    <link rel="stylesheet" href="assets/css/code-mirror.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/modal-loader.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/uml-loader.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+</style>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/the-matrix.css">
+</head>
+
+<body style="background: var(--bs-dark);">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-menu" style="padding: 20px;">
+        <div class="d-flex flex-column justify-content-start align-items-center" style="height: 100%;width: 100%;">
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%;margin: 0 0 20px;">
+                <div class="d-flex justify-content-start align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" type="button" style="background: transparent;padding: 10px;border-style: none;border-radius: 10px;width: 40px;height: 40px;" data-bs-target="#offcanvas-menu" data-bs-toggle="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M48 416c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320zm16 64c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480zm64-224c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 208c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104c-4.9-4.5-7.7-10.9-7.7-17.6z"></path>
+                        </svg></button></div>
+                <div class="d-flex justify-content-end align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" id="btn-new-chat-mobile" type="button" style="background: transparent;padding: 10px;border-style: none;border-radius: 10px;width: 40px;height: 40px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"></path>
+                        </svg></button></div>
+            </div>
+            <hr style="width: 100%;margin: 0 0 20px;opacity: 1;border-width: 1px;border-color: lightgray;">
+            <ul class="nav nav-pills flex-column d-flex justify-content-start align-items-center mb-auto" id="ul-menu-mobile" style="width: 100%;overflow: auto;"></ul>
+            <hr style="width: 100%;margin: 0 0 20px;opacity: 1;border-width: 1px;border-color: lightgray;">
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%;">
+                <div class="d-flex justify-content-start align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu btn-save-chats" id="btn-save-chats-mobile" type="button" style="background: transparent;padding: 10px;border-radius: 10px;border-style: none;width: 40px;height: 40px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"></path>
+                        </svg></button></div>
+                <div class="d-flex justify-content-end align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" id="btn-clear-chats-mobile" type="button" style="background: transparent;padding: 10px;border-radius: 10px;border-style: none;width: 40px;height: 40px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"></path>
+                        </svg></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center align-items-center">
+        <div class="d-flex justify-content-start align-items-start" style="width: 100%;height: 0;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu-out" id="btn-menu" type="button" style="background: transparent;padding: 10px;border-style: none;border-radius: 10px;width: 40px;height: 40px;margin: 20px 0 0 20px;z-index: 1000;" data-bs-target="#offcanvas-menu" data-bs-toggle="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="color: var(--bs-body-color);font-size: 20px;">
+
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H16C16.5523 6 17 6.44772 17 7C17 7.55228 16.5523 8 16 8H4C3.44772 8 3 7.55228 3 7Z" fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 13C3 12.4477 3.44772 12 4 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H4C3.44772 14 3 13.5523 3 13Z" fill="currentColor"></path>
+                </svg></button></div>
+        <div class="theme-switcher dropdown d-flex justify-content-end align-items-start" style="width: 100%;height: 0;"><button class="btn btn-link d-flex justify-content-center align-items-center btn-menu-out" aria-expanded="false" data-bs-toggle="dropdown" id="btn-theme" type="button" style="color: var(--bs-body-color);width: 40px;height: 40px;padding: 10px;border-style: none;border-radius: 10px;margin: 20px 20px 0 0;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1" style="margin: 0!important;font-size: 20px;">
+                    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+                </svg></button>
+            <div class="dropdown-menu" style="border-style: none;border-radius: 10px;"><a class="dropdown-item d-flex justify-content-start align-items-center" href="#" data-bs-theme-value="light"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill opacity-50 me-2" style="margin: 0 10px 0 0!important;">
+                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+                    </svg>Light</a><a class="dropdown-item d-flex justify-content-start align-items-center" href="#" data-bs-theme-value="dark"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-moon-stars-fill opacity-50 me-2" style="margin: 0 10px 0 0!important;">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278"></path>
+                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+                    </svg>Dark</a></div>
+        </div>
+    </div>
+    <section class="d-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center" id="section" style="width: 100%;min-height: 100vh;padding: 24px;">
+        <div class="d-flex d-md-flex flex-row justify-content-center align-items-center justify-content-md-center align-items-md-center" style="width: 100%;">
+            <div class="d-flex justify-content-center align-items-end none" id="sidebar" style="padding: 20px;background: var(--bs-body-bg);border-radius: 20px;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;width: 20%;height: 750px;">
+                <div class="d-flex flex-column justify-content-start align-items-center" style="height: 100%;width: 100%;">
+                    <div class="d-flex justify-content-center align-items-center" style="width: 100%;margin: 0 0 20px;">
+                        <div class="d-flex justify-content-end align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" id="btn-new-chat" type="button" style="background: transparent;padding: 10px;border-style: none;border-radius: 10px;width: 40px;height: 40px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                    <path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"></path>
+                                </svg></button></div>
+                    </div>
+                    <hr style="width: 100%;margin: 0 0 20px;opacity: 1;border-width: 1px;border-color: lightgray;">
+                    <ul class="nav nav-pills flex-column d-flex justify-content-start align-items-center mb-auto" id="ul-menu" style="width: 100%;overflow: auto;"></ul>
+                    <hr style="width: 100%;margin: 20px 0;opacity: 1;border-width: 1px;border-color: lightgray;">
+                    <div class="d-flex justify-content-center align-items-center" style="width: 100%;">
+                        <div class="d-flex justify-content-start align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" id="btn-save-chats" type="button" style="padding: 10px;border-radius: 10px;border-style: none;width: 40px;height: 40px;background: transparent;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                    <path d="M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"></path>
+                                </svg></button></div>
+                        <div class="d-flex justify-content-end align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center btn-menu" id="btn-clear-chats" type="button" style="padding: 10px;border-radius: 10px;border-style: none;width: 40px;height: 40px;background: transparent;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="color: var(--bs-body-color);font-size: 20px;">
+                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                    <path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"></path>
+                                </svg></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-end align-items-center" id="content" style="width: 100%;">
+                <!-- Start: 1 Row 1 Column -->
+                <div style="padding: 0;width: 100%;">
+                    <div class="row row-content" style="margin: 0 -32px;">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center justify-content-md-center"><img src="assets/img/Logo-1.svg" style="width: 150px;margin: 100px 0 50px 0;"></div>
+                    </div>
+                </div><!-- End: 1 Row 1 Column -->
+                <!-- Start: 1 Row 2 Columns -->
+                <div class="flex-row-reverse" style="padding: 0;width: 100%;">
+                    <div class="row flex-row-reverse row-content" style="margin: 0 -32px;">
+                        <div class="col-md-6 d-flex justify-content-center align-items-center" style="margin: 0 0 24px;border-radius: 20px;">
+                            <div class="d-flex flex-column justify-content-center align-items-center" style="background: var(--bs-body-bg);width: 100%;border-radius: 20px;padding: 20px;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;">
+                                <div class="d-flex justify-content-center align-items-center" id="img-uml-bg" style="width: 100%;background: white;height: 256px;padding: 20px;border-radius: 20px;margin: 0 0 24px;">
+                                    <div class="d-flex justify-content-center align-items-center" style="position: absolute;z-index: 1000;width: 25%;height: 25%;"><div id="loader-img-uml">
+    <svg class="circle-outer" viewBox="0 0 86 86">
+        <circle class="back" cx="43" cy="43" r="40"></circle>
+        <circle class="front" cx="43" cy="43" r="40"></circle>
+        <circle class="new" cx="43" cy="43" r="40"></circle>
+    </svg>
+    <svg class="circle-middle" viewBox="0 0 60 60">
+        <circle class="back" cx="30" cy="30" r="27"></circle>
+        <circle class="front" cx="30" cy="30" r="27"></circle>
+    </svg>
+    <svg class="circle-inner" viewBox="0 0 34 34">
+        <circle class="back" cx="17" cy="17" r="14"></circle>
+        <circle class="front" cx="17" cy="17" r="14"></circle>
+    </svg>
+</div></div><img id="img-uml" class="none" style="width: 100%;object-fit: contain;object-position: center;height: 100%;" src="assets/img/example.png">
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center" style="width: 100%;border-radius: 1000px;background: var(--bs-dark);box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;padding: 10px;height: 64px;">
+                                    <div class="d-flex flex-row justify-content-start align-items-center" style="width: 100%;"><button class="btn btn-primary d-flex justify-content-center align-items-center custom zoom" id="btn-templates" type="button" style="border-width: 0px;border-radius: 100%;padding: 12px;color: white;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;margin: 0 12px 0 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 20px;">
+                                                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                                <path d="M448 480H64c-35.3 0-64-28.7-64-64V192H512V416c0 35.3-28.7 64-64 64zm64-320H0V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64z"></path>
+                                            </svg></button><button class="btn btn-primary d-flex justify-content-center align-items-center custom zoom" id="btn-share" type="button" style="border-width: 0px;border-radius: 100%;padding: 12px;color: white;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;" data-bs-target="#modal-3" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 20px;">
+                                                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                                                <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"></path>
+                                            </svg></button></div>
+                                    <div class="d-flex flex-row justify-content-center align-items-center"><button class="btn btn-primary d-flex justify-content-center align-items-center custom zoom" id="btn-download" type="button" style="border-width: 0px;border-radius: 100%;padding: 12px;color: white;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;" data-bs-target="#modal-4" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 20px;">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 9.5C2 11.433 3.567 13 5.5 13H9V15.5858L7.70711 14.2929C7.31658 13.9024 6.68342 13.9024 6.29289 14.2929C5.90237 14.6834 5.90237 15.3166 6.29289 15.7071L9.29289 18.7071C9.68342 19.0976 10.3166 19.0976 10.7071 18.7071L13.7071 15.7071C14.0976 15.3166 14.0976 14.6834 13.7071 14.2929C13.3166 13.9024 12.6834 13.9024 12.2929 14.2929L11 15.5858V13H13.5C15.9853 13 18 10.9853 18 8.5C18 6.01472 15.9853 4 13.5 4C13.2912 4 13.0857 4.01422 12.8845 4.04175C12.4551 2.29538 10.8788 1 9 1C6.79086 1 5 2.79086 5 5C5 5.35223 5.04553 5.69382 5.13102 6.01922C3.37146 6.20358 2 7.69163 2 9.5ZM11 13H9V8C9 7.44772 9.44772 7 10 7C10.5523 7 11 7.44772 11 8V13Z" fill="currentColor"></path>
+                                            </svg></button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin: 0 0 24px;"><textarea id="compiler" style="border-width: 0px;width: 100%;padding: 0;height: 100%;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;"></textarea></div>
+                    </div>
+                </div><!-- End: 1 Row 2 Columns -->
+                <!-- Start: 1 Row 1 Column -->
+                <div style="padding: 0;width: 100%;">
+                    <div class="row row-content" style="margin: 0 -32px;">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-center align-items-end mb-3" style="padding: 20px;width: 100%;background: var(--bs-body-bg);box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;border-radius: 20px;margin: 0!important;">
+                                <div class="d-flex flex-column justify-content-center align-items-center" style="margin-right: 20px;width: 100%;"><textarea class="focus-ring" id="description" name="description" style="resize: none;border: none;border-radius: 0;font-size: 16px;background: var(--bs-body-bg);width: 100%;margin: 0 0 24px;padding: 12px 24px;" placeholder="Example: Client-Server Model" required=""></textarea>
+                                    <div style="width: 100%;padding: 0 24px;background: var(--bs-dark);box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;border-radius: 20px;"><select id="select-uml" style="border: none;font-weight: bold;font-size: 12px;background: var(--bs-dark);width: 100%;height: 48px;font-family: Syncopate, sans-serif;color: var(--bs-body-color)!important;" required="">
+                                            <option value="Activity">Activity</option>
+                                            <option value="Class">Class</option>
+                                            <option value="Component">Component</option>
+                                            <option value="Deployment">Deployment</option>
+                                            <option value="Object">Object</option>
+                                            <option value="Sequence" selected="">Sequence</option>
+                                            <option value="State">State</option>
+                                            <option value="Timing">Timing</option>
+                                            <option value="Use-case">Use-case</option>
+                                        </select></div>
+                                </div><button class="btn btn-primary d-flex justify-content-center align-items-center custom zoom" id="btn-prompt" style="border-width: 0px;border-radius: 100%;padding: 12px;box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 24px;">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.29289 9.70711C2.90237 9.31658 2.90237 8.68342 3.29289 8.29289L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289L16.7071 8.29289C17.0976 8.68342 17.0976 9.31658 16.7071 9.70711C16.3166 10.0976 15.6834 10.0976 15.2929 9.70711L11 5.41421L11 17C11 17.5523 10.5523 18 10 18C9.44772 18 9 17.5523 9 17L9 5.41421L4.70711 9.70711C4.31658 10.0976 3.68342 10.0976 3.29289 9.70711Z" fill="currentColor"></path>
+                                    </svg></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End: 1 Row 1 Column -->
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="padding: 48px;">
+                    <div class="d-flex justify-content-center align-items-center pulse animated infinite" id="modal-loader" style="border-radius: 1000px;background: linear-gradient(90deg, #ff0069 0%, #8a2be2 100%);padding: 12px;margin: 0 0 32px;width: 100px;height: 100px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 64px;color: white;">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 2C4.55228 2 5 2.44772 5 3V5.10125C6.27009 3.80489 8.04052 3 10 3C13.0494 3 15.641 4.94932 16.6014 7.66675C16.7855 8.18747 16.5126 8.75879 15.9918 8.94284C15.4711 9.12689 14.8998 8.85396 14.7157 8.33325C14.0289 6.38991 12.1755 5 10 5C8.36507 5 6.91204 5.78502 5.99935 7H9C9.55228 7 10 7.44772 10 8C10 8.55228 9.55228 9 9 9H4C3.44772 9 3 8.55228 3 8V3C3 2.44772 3.44772 2 4 2ZM4.00817 11.0572C4.52888 10.8731 5.1002 11.146 5.28425 11.6668C5.97112 13.6101 7.82453 15 10 15C11.6349 15 13.088 14.215 14.0006 13L11 13C10.4477 13 10 12.5523 10 12C10 11.4477 10.4477 11 11 11H16C16.2652 11 16.5196 11.1054 16.7071 11.2929C16.8946 11.4804 17 11.7348 17 12V17C17 17.5523 16.5523 18 16 18C15.4477 18 15 17.5523 15 17V14.8987C13.7299 16.1951 11.9595 17 10 17C6.95059 17 4.35905 15.0507 3.39857 12.3332C3.21452 11.8125 3.48745 11.2412 4.00817 11.0572Z" fill="currentColor"></path>
+                        </svg></div>
+                    <p style="text-align: center;margin: 0;">Please hold on for a moment while I work on generating your diagram.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-2">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="padding: 48px;">
+                    <div class="d-flex justify-content-center align-items-center pulse animated infinite" style="border-radius: 1000px;background: linear-gradient(90deg, #ff0069 0%, #8a2be2 100%);padding: 24px;margin: 0 0 32px;width: 100px;height: 100px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 64px;color: white;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M448 480H64c-35.3 0-64-28.7-64-64V192H512V416c0 35.3-28.7 64-64 64zm64-320H0V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64z"></path>
+                        </svg></div>
+                    <p style="margin: 0 0 16px;text-align: center;">Select a template to run. You can modify it according to your requirements.</p>
+                    <div style="width: 100%;padding: 0 24px;background: var(--bs-dark);box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;border-radius: 20px;"><select id="select-template" style="border: none;font-weight: bold;font-size: 12px;background: var(--bs-dark);width: 100%;height: 48px;text-align: center;color: var(--bs-body-color)!important;font-family: Syncopate, sans-serif;" required=""></select></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-3">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="padding: 48px;">
+                    <div class="d-flex justify-content-center align-items-center pulse animated infinite" style="border-radius: 1000px;background: linear-gradient(90deg, #ff0069 0%, #8a2be2 100%);padding: 24px;margin: 0 0 32px;width: 100px;height: 100px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 64px;color: white;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"></path>
+                        </svg></div>
+                    <p style="margin: 0;text-align: center;">Link copied! You can now share this diagram or paste it elsewhere.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-4">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="padding: 48px;">
+                    <div class="d-flex justify-content-center align-items-center pulse animated infinite" style="border-radius: 1000px;background: linear-gradient(90deg, #ff0069 0%, #8a2be2 100%);padding: 24px;margin: 0 0 32px;width: 100px;height: 100px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 64px;color: white;">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 9.5C2 11.433 3.567 13 5.5 13H9V15.5858L7.70711 14.2929C7.31658 13.9024 6.68342 13.9024 6.29289 14.2929C5.90237 14.6834 5.90237 15.3166 6.29289 15.7071L9.29289 18.7071C9.68342 19.0976 10.3166 19.0976 10.7071 18.7071L13.7071 15.7071C14.0976 15.3166 14.0976 14.6834 13.7071 14.2929C13.3166 13.9024 12.6834 13.9024 12.2929 14.2929L11 15.5858V13H13.5C15.9853 13 18 10.9853 18 8.5C18 6.01472 15.9853 4 13.5 4C13.2912 4 13.0857 4.01422 12.8845 4.04175C12.4551 2.29538 10.8788 1 9 1C6.79086 1 5 2.79086 5 5C5 5.35223 5.04553 5.69382 5.13102 6.01922C3.37146 6.20358 2 7.69163 2 9.5ZM11 13H9V8C9 7.44772 9.44772 7 10 7C10.5523 7 11 7.44772 11 8V13Z" fill="currentColor"></path>
+                        </svg></div>
+                    <p style="text-align: center;">I thought this name would work. Would you like to save it as is, or make changes?</p>
+                    <div class="d-flex justify-content-center align-items-center"><input class="focus-ring" type="text" id="input-save-download" style="width: 100%;margin-bottom: 0;text-align: center;height: 48px;border-top-left-radius: 20px;border-bottom-left-radius: 20px;border-width: 0px;background: var(--bs-dark);padding: 10px 20px;" required="" autocomplete="off" name="Filename" placeholder="Your_UML"><button class="btn btn-primary" id="btn-save-download" type="button" style="height: 48px;border-width: 0px;border-radius: 0px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;background: linear-gradient(90deg, #ff0069 0%, #8a2be2 100%);padding: 10px 20px;font-family: Syncopate, sans-serif;font-weight: bold;">Save</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-5">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="padding: 0;"><img id="img-lightbox" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>    
+    <!-- CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/javascript/javascript.js"></script>
+    <script src="https://cjrtnc.leaningtech.com/2.3/loader.js"></script>
+    <!-- Project Assets -->
+    <script src="assets/src/compiler/code_mirror.js" type="module"></script>
+    <script src="assets/src/compiler/plantuml_core.js" type="module"></script>
+    <script src="assets/src/compiler/plantuml_render.js"></script>
+    <script src="assets/src/func/chat.js" type="module"></script>
+    <script src="assets/src/func/download.js" type="module"></script>
+    <script src="assets/src/func/lightbox.js" type="module"></script>
+    <script src="assets/src/func/prompt.js" type="module"></script>
+    <script src="assets/src/func/share.js" type="module"></script>
+    <script src="assets/src/func/templates.js" type="module"></script>
+    <!-- Bootstrap Studio Assets -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/description.js"></script>
+</body>
+
+</html>

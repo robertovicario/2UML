@@ -1,0 +1,13 @@
+:root {
+  --bs-focus-ring-width: 0!important;
+}
+
+::selection {
+  background: #8a2be2;
+  color: white;
+}
+
+.none {
+  display: none!important;
+}
+
