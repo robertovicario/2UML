@@ -8,16 +8,16 @@
 > 
 > Try 2UML here: [robertovicario-2uml.hf.space](https://robertovicario-2uml.hf.space)
 
-## Preview
 
 <table>
+    <tr colspan="2" align="center">**Preview**</tr>
     <tr>
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/1.png" width="512"></td>
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/2.png" width="512"></td>
     </tr>
     <tr>
-        <td align="center">Light</td>
-        <td align="center">Dark</td>
+        <td align="center">**Light**</td>
+        <td align="center">**Dark**</td>
     </tr>
 </table>
 
