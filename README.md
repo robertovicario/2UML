@@ -10,7 +10,8 @@
 
 
 <table>
-    <tr colspan="2" align="center">**Preview**</tr>
+    <tr>
+        <td colspan="2" align="center">**Preview**</td>
     <tr>
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/1.png" width="512"></td>
         <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/2.png" width="512"></td>
