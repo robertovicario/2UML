@@ -8,7 +8,7 @@
 > 
 > Try 2UML here: [robertovicario-2uml.hf.space](https://robertovicario-2uml.hf.space)
 
-### Preview
+## Preview
 
 <table>
     <tr>
