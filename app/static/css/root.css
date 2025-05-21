@@ -1,0 +1,117 @@
+/* Root */
+
+:root {
+	--primary: #8a2be2;
+}
+
+::selection {
+	color: var(--bs-primary);
+	background-color: var(--bs-primary-bg-subtle);
+}
+
+body {
+	font-family: "Noto Sans", sans-serif !important;
+}
+
+/* Bootstrap Components */
+
+.badge-icon {
+	width: 48px !important;
+	height: 48px !important;
+	padding: 0 !important;
+	border-radius: 8px;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.badge-icon svg {
+	font-size: 24px !important;
+}
+
+.btn {
+	padding-top: 8px !important;
+	padding-right: 24px !important;
+	padding-bottom: 8px !important;
+	padding-left: 24px !important;
+	border: none !important;
+	border-radius: 8px !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.btn:focus {
+	outline: none !important;
+}
+
+.btn-actions {
+	width: 32px !important;
+	height: 32px !important;
+	padding: 8px !important;
+	font-size: 20px !important;
+	border-radius: 100% !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.dropdown-item {
+	padding-top: 8px !important;
+	padding-right: 24px !important;
+	padding-bottom: 8px !important;
+	padding-left: 24px !important;
+	border-radius: 0 !important;
+	display: flex !important;
+	justify-content: start !important;
+	align-items: center !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+	color: white !important;
+	background-color: var(--primary) !important;
+	text-decoration: none !important;
+}
+
+.dropdown-item svg {
+	font-size: 20px !important;
+}
+
+.dropdown-menu {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+	font-size: 16px !important;
+	border-width: 1px !important;
+	border-radius: 8px !important;
+	box-shadow: none !important;
+}
+
+.form-check-input {
+	margin: 0 !important;
+	border-radius: 4px !important;
+}
+
+.form-check-input:checked {
+	background-color: var(--primary) !important;
+	border-color: var(--primary) !important;
+}
+
+.form-control {
+	border-radius: 8px !important;
+}
+
+.nav-pills .nav-link.active {
+	color: white !important;
+	background-color: var(--bs-primary) !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}

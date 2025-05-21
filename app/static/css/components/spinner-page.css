@@ -1,0 +1,10 @@
+/* Spinner Page :: Components */
+
+#spinner-page {
+    z-index: 9999 !important;
+}
+
+#spinner-page div {
+    width: 3rem !important;
+    height: 3rem !important;
+}

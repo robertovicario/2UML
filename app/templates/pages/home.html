@@ -1,0 +1,33 @@
+<!-- Jinja :: Template -->
+{% extends 'base.html' %}
+
+<!-- Jinja :: Theme -->
+{% set theme_title = 'Home - 2UML' %}
+
+<!-- Jinja :: Styles -->
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/components/spinner-page.css' )}}">
+{% endblock %}
+
+<!-- Jinja :: Content -->
+{% block content %}
+
+<!-- Jinja :: Flash -->
+{% include 'includes/spinner-page.html' %}
+
+<!-- Jinja :: Flash -->
+{% include 'includes/flash.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="d-flex justify-content-center align-items-center w-100">
+            Hello, World!
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Jinja :: Scripts -->
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/components/spinner_page.js' )}}"></script>
+{% endblock %}
