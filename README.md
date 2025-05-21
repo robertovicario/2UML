@@ -4,41 +4,85 @@
 
 2UML is an intuitive and efficient tool designed to streamline the process of creating Unified Modeling Language (UML) diagrams. With its user-friendly interface, 2UML empowers users to generate UML diagrams effortlessly from natural language inputs.
 
-> [!NOTE]
-> 
-> Try 2UML here: [robertovicario-2uml.hf.space](https://robertovicario-2uml.hf.space)
+## Prerequisites
 
-## Preview
+> [!IMPORTANT]
+>
+> - Docker
+> - Docker Compose
 
-<table>
-    <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/1.png" width="512"></td>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/2.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Light</strong></td>
-        <td align="center"><strong>Dark</strong></td>
-    </tr>
-</table>
+## User Interface (UI)
 
-## Control Flow
-
-<table>
-    <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/2UML/main/docs/img/3.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Image:</strong> Exploring the control flow of the system.</td>
-    </tr>
-</table>
+| <a href="https://robertovicario-2uml.hf.space"><img src="./docs/cover.png" alt="UI" width="384"></a> |
+| :-: |
+| **Home - 2UML** |
 
 ## Instructions
 
-We are currently working on integrating Docker into this repository! In the meantime, feel free to explore the [Hugging Face space](https://huggingface.co/spaces/robertovicario/2UML).
+Usage:
 
-## Credits
+```sh
+bash cmd.sh {start|stop|setup|clear|build|deploy}
+```
 
-...
+### `setup`
+
+If you haven't built the project yet, you can do so by running:
+
+```sh
+bash cmd.sh setup
+```
+
+Once the setup process is complete, the project will be accessible at `localhost:7860`.
+
+> [!WARNING]
+>
+> If this port is already in use, search for all occurrences of `7860` within the project and replace them with your preferred port number. After making these changes, you'll need to rebuild the project for the modifications to take effect.
+
+### `start`
+
+The program will run in debug mode, meaning frontend changes will be rendered upon reload. However, if you make changes to the backend, you will need to restart the program by running:
+
+```sh
+bash cmd.sh start
+```
+
+### `stop`
+
+To stop the program, simply run:
+
+```sh
+bash cmd.sh stop
+```
+
+> [!TIP]  
+> For a quicker way to stop, use `ctrl + C` to force stop the program.
+
+### `clear`
+
+If you need to clear all containers and their orphaned dependencies, you can run:
+
+```sh
+bash cmd.sh clear
+```
+
+### `build`
+
+To generate the static files for the project, run the following command:
+
+```sh
+bash cmd.sh build
+```
+
+After the build process completes, the static files will be available in the `./app/build` directory.
+
+### `deploy`
+
+To deploy the application to production, you can use the following command:
+
+```sh
+bash cmd.sh deploy
+```
 
 ## License
 

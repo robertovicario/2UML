@@ -5,7 +5,7 @@ services:
         container_name: "app-2uml"
         image: "app-2uml:2.0.0"
         build:
-            context: "./app"
+            context: "."
             dockerfile: "Dockerfile"
         ports:
             - "7860:7860"
