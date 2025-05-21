@@ -1,15 +1,9 @@
 #!/bin/bash
 
 start() {
-    if [ $2 == "-d" ]; then
-        printer "🚀 Starting the app"
-        docker-compose up -d
-        handler
-    else
-        printer "🚀 Starting the app"
-        docker-compose up
-        handler
-    fi
+    printer "🚀 Starting the app"
+    docker-compose up
+    handler
 }
 
 stop() {
@@ -27,11 +21,7 @@ setup() {
 
     # -------------------------
 
-    if [ $2 == "-d" ]; then
-        docker-compose up --build -d
-    else
-        docker-compose up --build
-    fi
+    docker-compose up --build
 
     # -------------------------
 
