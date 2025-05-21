@@ -1,7 +1,7 @@
 from flask import Flask
 import secrets
 
-from .routes.index import index_bp
+from routes.index import index_bp
 
 # -------------------------
 

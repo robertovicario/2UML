@@ -1,14 +1,20 @@
 #!/bin/bash
 
 start() {
-    printer "🚀 Starting the app"
-    docker run --rm --name app-2uml -p 7860:7860 app-2uml
-    handler
+    if [ $2 == "-d" ]; then
+        printer "🚀 Starting the app"
+        docker-compose up -d
+        handler
+    else
+        printer "🚀 Starting the app"
+        docker-compose up
+        handler
+    fi
 }
 
 stop() {
     printer "🛑 Stopping the app"
-    docker stop app-2uml
+    docker-compose down
     handler
 }
 
@@ -21,8 +27,11 @@ setup() {
 
     # -------------------------
 
-    docker build -t app-2uml .
-    docker run --rm --name app-2uml -p 7860:7860 app-2uml
+    if [ $2 == "-d" ]; then
+        docker-compose up --build -d
+    else
+        docker-compose up --build
+    fi
 
     # -------------------------
 
@@ -40,7 +49,7 @@ build() {
     rm -f build/app/README.md
     cp .gitattributes build
     cp .gitignore build
-    cp Dockerfile build
+    cp ./app/Dockerfile build
     cp app/README.md build
 
     # -------------------------
@@ -50,8 +59,7 @@ build() {
 
 clear() {
     printer "🧹 Clearing all"
-    docker rm -f app-2uml
-    docker rmi app-2uml
+    docker-compose down --volumes --rmi all
     handler
 }
 
@@ -64,7 +72,7 @@ deploy() {
     cp -r app 2UML/app
     cp .gitattributes 2UML
     cp .gitignore 2UML
-    cp Dockerfile 2UML
+    cp ./app/Dockerfile 2UML
     cp app/README.md 2UML
 
     # -------------------------

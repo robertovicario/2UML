@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    app-2uml:
+        container_name: "app-2uml"
+        image: "app-2uml:2.0.0"
+        build:
+            context: "./app"
+            dockerfile: "Dockerfile"
+        ports:
+            - "7860:7860"
+        volumes:
+            - "./app:/app"
