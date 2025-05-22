@@ -39,7 +39,7 @@ build() {
     rm -f build/app/README.md
     cp .gitattributes build
     cp .gitignore build
-    cp Dockerfile build
+    cp app/Dockerfile build
     cp app/README.md build
 
     # -------------------------
@@ -62,7 +62,7 @@ deploy() {
     cp -r app 2UML/app
     cp .gitattributes 2UML
     cp .gitignore 2UML
-    cp Dockerfile 2UML
+    cp app/Dockerfile 2UML
     cp app/README.md 2UML
 
     # -------------------------
