@@ -1,0 +1,33 @@
+/* Flash :: Components */
+
+.alert-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.alert {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-right: 20px !important;
+    padding-bottom: 0 !important;
+    padding-left: 8px !important;
+    margin-top: 20px !important;
+    position: fixed !important;
+    top: -100px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    transition: top 0.5s ease-in-out !important;
+}
+
+.alert.show {
+    top: 0 !important;
+}
+
+.alert.fade-out {
+    top: -100px !important;
+    transition: top 0.5s ease-in-out !important;
+}

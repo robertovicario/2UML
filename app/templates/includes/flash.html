@@ -1,0 +1,27 @@
+<!-- Flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert-container">
+                <div class="alert alert-{{ category }}" role="alert" data-timeout="{{ session['flash_timeout'] if 'flash_timeout' in session else 5000 }}">
+                    
+                    <!-- Badge -->
+                    <span class="badge-icon">
+                        {% if category == 'success' %}
+                            <i class="bi bi-check-circle-fill fs-4"></i>
+                        {% elif category == 'info' %}
+                            <i class="bi bi-info-circle-fill fs-4"></i>
+                        {% elif category == 'warning' %}
+                            <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                        {% elif category == 'danger' %}
+                            <i class="bi bi-exclamation-circle-fill fs-4"></i>
+                        {% endif %}
+                    </span>
+
+                    <!-- Message -->
+                    <span class="ms-2">{{ message }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}

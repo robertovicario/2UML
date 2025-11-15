@@ -1,0 +1,16 @@
+<!-- Navbar -->
+<nav class="navbar w-100 px-5 py-3">
+    <div class="d-flex flex-grow-1">
+        <a class="d-flex flex-row gap-3" href="#">
+            <img src="{{ url_for('static', filename='img/pythonapp-1.svg') }}" alt="Logo" width="32">
+            <h1 class="navbar-brand m-0">{{ config.system.name }}</h1>
+        </a>
+    </div>
+    <div class="d-flex gap-3">
+        <a class="d-flex align-items-center btn btn-primary" href="{{ config.system.repository.url }}" target="_blank">
+            <span class="me-2">GitHub</span>
+            <i class="bi bi-github fs-5"></i>
+        </a>
+        <button id="btn_theme_mode" class="d-flex align-items-center btn btn-outline-primary rounded-circle"></button>
+    </div>
+</nav>

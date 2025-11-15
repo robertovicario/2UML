@@ -1,0 +1,18 @@
+<!-- Jinja :: Template -->
+{% extends 'base.html' %}
+
+<!-- Jinja :: Theme -->
+{% set theme_title = 'Home - PythonApp' %}
+
+<!-- Jinja :: Styles -->
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/home.css') }}">
+{% endblock %}
+
+<!-- Jinja :: Content -->
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 id="hello" class="display-1 mb-3 text-primary">Hello, World!</h1>
+    <p class="display-6">Get your Python app up and running in seconds.</p>
+</div>
+{% endblock %}

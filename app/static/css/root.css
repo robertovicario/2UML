@@ -1,0 +1,18 @@
+/* Root */
+
+:root {
+	--primary: #3776ab;
+}
+
+::selection {
+	color: var(--bs-primary);
+	background-color: var(--bs-primary-bg-subtle);
+}
+
+body {
+	font-family: "Noto Sans", sans-serif !important;
+}
+
+a {
+	text-decoration: none !important;
+}

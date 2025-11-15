@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    pythonapp-app:
+        container_name: "pythonapp-app"
+        image: "pythonapp-app:1.0.0"
+        build:
+            context: "."
+            dockerfile: "dev/Dockerfile"
+        ports:
+            - "7860:7860"
+        volumes:
+            - "./app:/app"
