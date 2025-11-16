@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VENV_DIR="venv"
+
 start() {
     printer "🚀 Starting the app"
     docker-compose up
@@ -14,6 +16,12 @@ stop() {
 
 setup() {
     printer "🔨 Setting up the app"
+    cd app
+    python -m venv $VENV_DIR
+    source $VENV_DIR/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    cd ..
     docker-compose up --build
     handler
 }

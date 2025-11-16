@@ -1,7 +1,7 @@
 /* Root */
 
 :root {
-	--primary: #3776ab;
+	--primary: #7187f7;
 }
 
 ::selection {
@@ -15,4 +15,14 @@ body {
 
 a {
 	text-decoration: none !important;
+}
+
+input:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+textarea:focus {
+	outline: none !important;
+	box-shadow: none !important;
 }

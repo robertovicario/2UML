@@ -2,17 +2,86 @@
 {% extends 'base.html' %}
 
 <!-- Jinja :: Theme -->
-{% set theme_title = 'Home - PythonApp' %}
+{% set theme_title = 'Home' %}
 
 <!-- Jinja :: Styles -->
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/components/chat.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/shadowfox.css">
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/matchbrackets.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/closebrackets.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/clike/clike.js"></script>
+<style>
+#container-display {
+    height: 512px !important;
+}
+
+.CodeMirror {
+    width: 100% !important;
+    height: 512px !important;
+    font-size: 16px !important;
+    border: 1px solid #4a5056 !important;
+    border-radius: 16px !important;
+}
+</style>
 {% endblock %}
 
 <!-- Jinja :: Content -->
 {% block content %}
-<div class="d-flex flex-column justify-content-center align-items-center">
-    <h1 id="hello" class="display-1 mb-3 text-primary">Hello, World!</h1>
-    <p class="display-6">Get your Python app up and running in seconds.</p>
+<div class="d-flex justify-content-center align-items-center w-100 overflow-auto dropdown-bug">
+    <div class="d-flex flex-column justify-content-between align-items-center gap-4 w-75 p-5">
+        <div class="d-flex justify-content-center align-items-center gap-4 w-100">
+
+                <!-- Editor -->
+                <div class="d-flex justify-content-center align-items-center gap-5 w-100 rounded-4">
+                    <textarea id="textarea-editor"></textarea>
+                </div>
+
+                <!-- Display -->
+                <div id="container-display" class="d-flex flex-column justify-content-end align-items-center gap-4 w-100 p-4 border rounded-4">
+                    <div class="d-flex flex-grow w-100 h-100 bg-white border rounded-3"></div>
+                    <select class="form-select border rounded-3">
+                        <option selected>Templates</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Prompt -->
+            <div id="container-prompt" class="border rounded-4">
+                <form>
+                    <textarea type="text" placeholder="Ask me to design a system" required rows="1"></textarea>
+                    <button id="btn-prompt-submit" class="btn btn-primary" type="button" name="btn-prompt-submit" title="Send">
+                        <i class="bi bi-arrow-up"></i>
+                    </button>
+                </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer w-100 text-center">
+            <span id="copyright">Copyright &copy; YYYY <span class="text-primary">{{ config.system.name }}</span>. All rights reserved.</span>
+        </footer>
+    </div>
 </div>
+{% endblock %}
+
+{% block modals %}
+<script>
+const textarea_editor = CodeMirror.fromTextArea(document.getElementById('textarea-editor'), {
+    mode: 'text/x-java',
+    lineNumbers: true,
+    matchBrackets: true,
+    autoCloseBrackets: true,
+    smartIndent: true,
+    indentUnit: 4,
+    tabSize: 4,
+    indentWithTabs: false,
+    theme: 'shadowfox'
+});
+textarea_editor.setValue('@startuml\n\tClient -> Server: ping\n\tServer -> Client: 200\n@enduml\n');
+</script>
 {% endblock %}

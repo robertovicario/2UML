@@ -1,0 +1,10 @@
+- category: "Default"
+  name: "Client-Server Model"
+  description: "Illustrates the fundamental interaction between a client and a server in a request-response model."
+  uml:
+    type: "Sequence"
+    code: |
+      @startuml
+      	Client -> Server: Request
+      	Server --> Client: Response
+      @enduml

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html data-bs-theme="{{ config.ui.theme }}" lang="{{ config.system.lang }}">
 
 <head>
 
@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     
     <!-- Theme -->
-    <title>{{ theme_title }}</title>
-    <meta name="theme-color" content="#BDBF09"/>
+    <title>{{ theme_title }} – {{ config.system.name }}</title>
+    <meta name="theme-color" content="{{ config.ui.main_color }}"/>
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicons/favicon-16x16.png') }}"/>
@@ -48,9 +48,6 @@
 
         <!-- Jinja :: Content -->
         {% block content %}{% endblock %}
-
-        <!-- Jinja :: Footer -->
-        {% include 'includes/footer.html' %}
 
         <!-- Jinja :: Flash -->
         {% include 'includes/flash.html' %}

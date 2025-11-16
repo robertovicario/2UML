@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-    pythonapp-app:
-        container_name: "pythonapp-app"
-        image: "pythonapp-app:1.0.0"
+    2uml-app:
+        container_name: "2uml-app"
+        image: "2uml-app:1.0.0"
         build:
             context: "."
             dockerfile: "dev/Dockerfile"

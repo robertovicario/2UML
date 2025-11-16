@@ -1,4 +1,7 @@
-# PythonApp
+| <img src="docs/pythonapp.svg" width="128"> |
+| - |
+
+# 2UML
 
 ## Overview
 
@@ -15,7 +18,7 @@ This project is a simple Python application that serves as a template for buildi
 
 | <a href="https://pythonapp-8jk6.onrender.com"><img src="docs/cover.png" alt="UI" width="512"></a> |
 | :-: |
-| **Home - PythonApp** |
+| **Home - 2UML** |
 
 ## Instructions
 

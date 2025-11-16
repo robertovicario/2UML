@@ -1,13 +1,18 @@
 {
     "system": {
-        "name": "PythonApp",
+        "lang": "en",
+        "name": "2UML",
         "port": 7860,
-        "version": "2.0.2",
+        "version": "2.0.0",
         "repository": {
             "server": "github.com",
             "user": "robertovicario",
-            "name": "PythonApp",
-            "url": "https://github.com/robertovicario/PythonApp"
+            "name": "2UML",
+            "url": "https://github.com/robertovicario/2UML"
         }
+    },
+    "ui": {
+        "theme": "light",
+        "primary": "#7187f7"
     }
 }

@@ -1,0 +1,103 @@
+/* Chat :: Pages */
+
+#container-intro {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-grow: 1 !important;
+}
+
+#container-chat {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: start !important;
+    align-items: center !important;
+    flex-grow: 1 !important;
+    width: 100% !important;
+    padding: 3rem !important;
+    overflow-y: auto !important;
+    transition: all 0.2s ease-in-out !important;
+    scrollbar-width: none !important;  /* For Firefox */
+    -ms-overflow-style: none !important;  /* For Internet Explorer and Edge */
+}
+
+#container-chat::-webkit-scrollbar {
+    display: none !important;  /* For Chrome, Safari, and Opera */
+}
+
+.message-bot {
+    display: flex !important;
+    justify-content: center !important;
+    align-self: start !important;
+    margin: 0.5rem 0 !important;
+    padding: 0.5rem 1rem !important;
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
+    max-width: 50% !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    border-radius: 1.5rem !important;
+}
+
+#message-bot-loading {
+    display: none !important;
+    justify-content: center !important;
+    align-self: start !important;
+    margin: 0.5rem 0 !important;
+    padding: 0.5rem 1rem !important;
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
+    max-width: 50% !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    border-radius: 1.5rem !important;
+}
+
+.message-user {
+    display: flex !important;
+    justify-content: center !important;
+    align-self: end !important;
+    margin: 0.5rem 0 !important;
+    padding: 0.5rem 1rem !important;
+    background-color: var(--bs-primary) !important;
+    color: var(--bs-white) !important;
+    max-width: 50% !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    border-radius: 1.5rem !important;
+}
+
+#container-prompt {
+    width: 100% !important;
+}
+
+#container-prompt form {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    padding-top: 1rem !important;
+    padding-right: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    padding-left: 1.5rem !important;
+    margin: 0 !important;
+}
+
+#container-prompt textarea {
+    width: 100% !important;
+    max-height: 420px !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    resize: none !important;
+}
+
+#container-prompt button {
+    border: none !important;
+}
+
+#container-prompt button i {
+    font-size: 1.25rem !important;
+}
