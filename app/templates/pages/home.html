@@ -34,31 +34,33 @@
     <div class="d-flex flex-column justify-content-between align-items-center gap-4 w-75 p-5">
         <div class="d-flex justify-content-center align-items-center gap-4 w-100">
 
-                <!-- Editor -->
-                <div class="d-flex justify-content-center align-items-center gap-5 w-100 rounded-4">
-                    <textarea id="textarea-editor"></textarea>
-                </div>
-
-                <!-- Display -->
-                <div id="container-display" class="d-flex flex-column justify-content-end align-items-center gap-4 w-100 p-4 border rounded-4">
-                    <div class="d-flex flex-grow w-100 h-100 bg-white border rounded-3"></div>
-                    <select class="form-select border rounded-3">
-                        <option selected>Templates</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
+            <!-- Editor -->
+            <div class="d-flex justify-content-center align-items-center gap-5 w-100 rounded-4">
+                <textarea id="textarea-editor"></textarea>
             </div>
 
-            <!-- Prompt -->
-            <div id="container-prompt" class="border rounded-4">
-                <form>
-                    <textarea type="text" placeholder="Ask me to design a system" required rows="1"></textarea>
-                    <button id="btn-prompt-submit" class="btn btn-primary" type="button" name="btn-prompt-submit" title="Send">
-                        <i class="bi bi-arrow-up"></i>
-                    </button>
-                </form>
+            <!-- Display -->
+            <div id="container-display" class="d-flex flex-column justify-content-end align-items-center gap-4 w-100 p-4 border rounded-4">
+                <div class="d-flex justify-content-center align-items-center w-100 h-100 bg-white border rounded-3">
+                    <img id="img-display" class="h-100 p-3 img-fluid object-fit-contain" src="" alt="Image">
+                </div>
+                <select class="form-select border rounded-3">
+                    <option selected>Templates</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Prompt -->
+        <div id="container-prompt" class="border rounded-4">
+            <form>
+                <textarea type="text" placeholder="Ask me to design a system" required rows="1"></textarea>
+                <button id="btn-prompt-submit" class="btn btn-primary" type="button" name="btn-prompt-submit" title="Send">
+                    <i class="bi bi-arrow-up"></i>
+                </button>
+            </form>
         </div>
 
         <!-- Footer -->
@@ -71,6 +73,9 @@
 
 {% block modals %}
 <script>
+
+/////////////////////////
+
 const textarea_editor = CodeMirror.fromTextArea(document.getElementById('textarea-editor'), {
     mode: 'text/x-java',
     lineNumbers: true,
@@ -82,6 +87,62 @@ const textarea_editor = CodeMirror.fromTextArea(document.getElementById('textare
     indentWithTabs: false,
     theme: 'shadowfox'
 });
-textarea_editor.setValue('@startuml\n\tClient -> Server: ping\n\tServer -> Client: 200\n@enduml\n');
+textarea_editor.setValue('@startuml\n\tClient -> Server: ping\n\talt Success\n\t\tServer -> Client: 200\n\telse Error\n\t\tServer -> Client: 500\n\tend\n@enduml');
+
+/////////////////////////
+
+/**
+ * Debounce function to limit the rate of function calls
+ */
+function debounce(func, delay) {
+    let flag;
+    return function(...args) {
+        if (flag) clearTimeout(flag);
+        flag = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    }
+}
+
+/////////////////////////
+
+/**
+ * Sending UML code to backend to generate diagram
+ */
+async function send_code_uml(code_uml) {
+    try {
+        const response = await fetch('/api/display/generate-diagram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code_uml: code_uml })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error);
+
+        const img = document.getElementById('img-display');
+        img.src = `data:image/png;base64,${data.image_base64}`;
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}
+
+/**
+ * Initializing the diagram on page load
+ */
+window.addEventListener('load', () => {
+    send_code_uml(textarea_editor.getValue());
+});
+
+/**
+ * Updating diagram on code change with debounce
+ */
+const debouncedSend = debounce(() => {
+    send_code_uml(textarea_editor.getValue());
+}, 500);
+textarea_editor.on('change', debouncedSend);
+
+/////////////////////////
+
 </script>
 {% endblock %}

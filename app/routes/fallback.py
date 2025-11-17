@@ -1,10 +1,18 @@
+# =========================
+# Dependencies
+# =========================
+
 from flask import Blueprint, render_template
 
-# -------------------------
+# =========================
+# Flask
+# =========================
 
 fallback_bp = Blueprint('fallback', __name__)
 
-# -------------------------
+# =========================
+# Templates
+# =========================
 
 def error_page(error):
     err_code = getattr(error, 'code', 500)
