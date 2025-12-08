@@ -11,7 +11,7 @@
 <div class="d-flex flex-column justify-content-center align-items-center text-center">
     <img class="w-25 mb-4 img-fluid" src="{{ url_for('static', filename='img/illustrations/error.svg') }}" alt="error.svg">
     <h2 class="text-danger w-50 mb-2">Error&nbsp;<span>{{ err_code }}:&nbsp;{{ err_name }}</span></h2>
-    <p class="text-dark w-75 mb-4">{{ err_desc }}</p>
+    <p class="w-75 mb-4">{{ err_desc }}</p>
     <a class="btn btn-danger" href="{{ url_for('templates.home') }}">Come Back</a>
 </div>
 
