@@ -9,7 +9,7 @@
     
     <!-- Theme -->
     <title>{{ theme_title }} – {{ config.system.name }}</title>
-    <meta name="theme-color" content="{{ config.ui.main_color }}"/>
+    <meta name="theme-color" content="{{ config.ui.theme_color }}"/>
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicons/favicon-16x16.png') }}"/>
@@ -41,7 +41,7 @@
 <body>
 
     <!-- Main -->
-    <div class=" d-flex flex-column justify-content-between min-vh-100">
+    <div class=" d-flex flex-column justify-content-between align-items-center min-vh-100">
 
         <!-- Jinja :: Navbar -->
         {% include 'includes/navbar.html' %}

@@ -1,4 +1,4 @@
-| <img src="docs/pythonapp.svg" width="128"> |
+| <img src="docs/logo.svg" width="128"> |
 | - |
 
 # 2UML

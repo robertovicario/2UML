@@ -6,26 +6,14 @@
 
 <!-- Jinja :: Styles -->
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/components/chat.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/shadowfox.css">
-<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/matchbrackets.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/closebrackets.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/clike/clike.js"></script>
-<style>
-#container-display {
-    height: 512px !important;
-}
-
-.CodeMirror {
-    width: 100% !important;
-    height: 512px !important;
-    font-size: 16px !important;
-    border: 1px solid #4a5056 !important;
-    border-radius: 16px !important;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/components/chat.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pages/home.css') }}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/shadowfox.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/matchbrackets.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/closebrackets.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/clike/clike.js"></script>
 {% endblock %}
 
 <!-- Jinja :: Content -->
@@ -46,9 +34,9 @@
                 </div>
                 <select class="form-select border rounded-3">
                     <option selected>Templates</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="1">-</option>
+                    <option value="2">-</option>
+                    <option value="3">-</option>
                 </select>
             </div>
         </div>
@@ -71,78 +59,7 @@
 </div>
 {% endblock %}
 
-{% block modals %}
-<script>
-
-/////////////////////////
-
-const textarea_editor = CodeMirror.fromTextArea(document.getElementById('textarea-editor'), {
-    mode: 'text/x-java',
-    lineNumbers: true,
-    matchBrackets: true,
-    autoCloseBrackets: true,
-    smartIndent: true,
-    indentUnit: 4,
-    tabSize: 4,
-    indentWithTabs: false,
-    theme: 'shadowfox'
-});
-textarea_editor.setValue('@startuml\n\tClient -> Server: ping\n\talt Success\n\t\tServer -> Client: 200\n\telse Error\n\t\tServer -> Client: 500\n\tend\n@enduml');
-
-/////////////////////////
-
-/**
- * Debounce function to limit the rate of function calls
- */
-function debounce(func, delay) {
-    let flag;
-    return function(...args) {
-        if (flag) clearTimeout(flag);
-        flag = setTimeout(() => {
-            func.apply(this, args);
-        }, delay);
-    }
-}
-
-/////////////////////////
-
-/**
- * Sending UML code to backend to generate diagram
- */
-async function send_code_uml(code_uml) {
-    try {
-        const response = await fetch('/api/display/generate-diagram', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code_uml: code_uml })
-        });
-
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error);
-
-        const img = document.getElementById('img-display');
-        img.src = `data:image/png;base64,${data.image_base64}`;
-    } catch (err) {
-        console.error('Error:', err);
-    }
-}
-
-/**
- * Initializing the diagram on page load
- */
-window.addEventListener('load', () => {
-    send_code_uml(textarea_editor.getValue());
-});
-
-/**
- * Updating diagram on code change with debounce
- */
-const debouncedSend = debounce(() => {
-    send_code_uml(textarea_editor.getValue());
-}, 500);
-textarea_editor.on('change', debouncedSend);
-
-/////////////////////////
-
-</script>
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/pages/chat.js') }}" data-endpoint="{{ url_for('index.generate_code') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/pages/diagram.js') }}" data-endpoint="{{ url_for('index.generate_diagram') }}"></script>
 {% endblock %}

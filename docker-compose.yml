@@ -3,6 +3,8 @@ version: "3.8"
 services:
     2uml-app:
         container_name: "2uml-app"
+        env_file:
+            - ".env"
         image: "2uml-app:1.0.0"
         build:
             context: "."

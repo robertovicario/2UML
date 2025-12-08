@@ -1,4 +1,7 @@
 flask
+flask_session
 gunicorn
+huggingface_hub
+loguru
 plantuml
 requests

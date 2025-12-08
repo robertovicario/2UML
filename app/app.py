@@ -8,6 +8,7 @@ import os
 
 from routes.fallback import fallback_bp
 from routes.index import index_bp
+from routes.templates import templates_bp
 
 # =========================
 # Flask
@@ -16,6 +17,7 @@ from routes.index import index_bp
 app = Flask(__name__)
 app.register_blueprint(fallback_bp)
 app.register_blueprint(index_bp)
+app.register_blueprint(templates_bp)
 
 # =========================
 # Configuration

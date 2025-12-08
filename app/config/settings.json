@@ -13,6 +13,6 @@
     },
     "ui": {
         "theme": "light",
-        "primary": "#7187f7"
+        "theme_color": "#7187f7"
     }
 }

@@ -8,7 +8,7 @@ from flask import Blueprint, render_template
 # Flask
 # =========================
 
-fallback_bp = Blueprint('fallback', __name__)
+fallback_bp = Blueprint('fallback', __name__, url_prefix='/fallback')
 
 # =========================
 # Templates
@@ -31,7 +31,5 @@ def handle_exception(error):
     return error_page(error)
 
 # @fallback_bp.route('/maintenance')
-# @login_required
 # def maintainance_page():
-#     return render_template('pages/maintenance.html',
-#                            current_user=current_user)
+#     return render_template('pages/maintenance.html')
