@@ -5,7 +5,7 @@
 
 ## Overview
 
-This project is a simple Python application that serves as a template for building web applications. It includes a basic structure with Docker support for easy deployment and development.
+This project is an application that uses _Natural Language Processing (NLP)_ to convert text inputs into _UML Diagrams_. It uses a _Large Language Model (LLM)_ to interpret user requests, which are then translated into _PlantUML_ code and rendered as diagrams.
 
 ## Prerequisites
 
