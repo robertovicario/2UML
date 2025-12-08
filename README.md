@@ -16,7 +16,7 @@ This project is an application that uses _Natural Language Processing (NLP)_ to 
 
 ## User Interface (UI)
 
-| <a href="https://pythonapp-8jk6.onrender.com"><img src="docs/cover.png" alt="UI" width="512"></a> |
+| <a href="https://twouml-oc1e.onrender.com"><img src="docs/cover.png" alt="UI" width="512"></a> |
 | :-: |
 | **Home - 2UML** |
 
